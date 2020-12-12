@@ -1,0 +1,40 @@
+<app-loading [isLoading]="(state$ | async).isLoading">
+  <ion-content padding>
+    <div class="login-app-container">
+      <ion-card class="form-login-app">
+  
+        <form [formGroup]="form" (ngSubmit)="submit(form)">
+          <ion-grid class="ion-align-items-center">
+            <ion-col>
+             <ion-item class="ion-align-items-center">
+               <strong>Login</strong>
+             </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input formControlName="userName" type="email" placeholder="correo@provider-name.com"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input formControlName="password" type="password" placeholder="password"></ion-input>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col>
+              <ion-button type="submit" [disabled]="this.form.invalid">Login</ion-button>
+            </ion-col>
+          </ion-grid>
+        </form>
+        <ion-grid class="ion-align-items-center">
+          <ion-col>
+            <ion-button type="button" (click)="register()" [disabled]="this.form.valid">Registrarse..</ion-button>
+          </ion-col>
+      </ion-grid>
+      </ion-card>
+    </div>
+  </ion-content>
+</app-loading>

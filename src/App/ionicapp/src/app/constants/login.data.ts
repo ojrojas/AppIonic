@@ -1,0 +1,1 @@
+export const failureLoginMessage = "Usuario o contraseña invalidos";

@@ -1,0 +1,66 @@
+<app-loading [isLoading]="(state$ | async).isLoading">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Crear usuario</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+    <ion-card>
+      <ion-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit(form)">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="name" type="text" placeholder="Nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Segundo Nombre</ion-label>
+            <ion-input formControlName="middleName" type="text" placeholder="Segundo Nombre"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input formControlName="lastName" type="text" placeholder="Apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Tipo Identificación</ion-label>
+            <ion-select placeholder="Seleccione..." formControlName="typeIdenticationId">
+              <ion-select-option [value]="typeIdentification.id" *ngFor="let typeIdentification of (state$ | async).typeIdentifications">
+                {{typeIdentification.description}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Identificación</ion-label>
+            <ion-input formControlName="identification" type="text" placeholder="Identificación"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="email" placeholder="correo@provider-name.com"></ion-input>
+          </ion-item>
+
+          
+          <ion-item>
+            <ion-label position="floating">UserName</ion-label>
+            <ion-input formControlName="userName" type="text" placeholder="Nombre de usuario"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input formControlName="password" type="password" placeholder="password"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-button type="submit">Login</ion-button>
+          </ion-item>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</app-loading>
