@@ -1,9 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+                Crear Cuenta
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="wallet-outline"></ion-icon>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+               Cuanto Tengo
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="cash-outline"></ion-icon>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+                Sacar Dinero
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="card-outline"></ion-icon>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item-divider></ion-item-divider>
 </ion-content>

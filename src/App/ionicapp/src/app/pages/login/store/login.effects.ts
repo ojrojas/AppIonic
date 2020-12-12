@@ -30,7 +30,6 @@ export class LoginEffects {
         if (props.token !== null) {
           const claims = this.service.getClaims(props.token);
           this.authService.setClaimsAuth(claims, props.token);
-          debugger;
           this.router.navigate(['/menu/home']);
         } else {
         this.service.presentToast(failureLoginMessage);

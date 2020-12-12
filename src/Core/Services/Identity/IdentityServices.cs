@@ -19,7 +19,10 @@ namespace Core.Services.Identity
 
         public async Task<ApplicationUser> CreateApplicationUser(ApplicationUser entity)
         {
-            return await this._asyncIdentityRepository.CreateApplicationUser(entity);
+            var userRegistered = await this.FindApplicationUser(entity.TypeIdenticationId, entity.Identification);
+            if (userRegistered == null)
+                return await this._asyncIdentityRepository.CreateApplicationUser(entity);
+            else return null;
         }
 
         public async Task<ApplicationUser> DeleteApplicationUser(Guid Id)
@@ -31,6 +34,12 @@ namespace Core.Services.Identity
         public async Task<ApplicationUser> FindApplicationUser(Guid Id)
         {
             var specification = new ApplicationUserSpecification(Id);
+            return await this._asyncIdentityRepository.FindApplicationUser(specification);
+        }
+
+        public async Task<ApplicationUser> FindApplicationUser(Guid TypeIdentificationId, string Identification)
+        {
+            var specification = new ApplicationUserSpecification(TypeIdentificationId, Identification);
             return await this._asyncIdentityRepository.FindApplicationUser(specification);
         }
 

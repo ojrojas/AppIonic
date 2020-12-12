@@ -35,7 +35,10 @@ namespace Api.InjectionDependencies
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<ITokenClaims, IdentityClaims>();
             services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<ITypeIdentificationService,TypeIdentificationService>(); 
+            services.AddScoped<ITypeIdentificationService,TypeIdentificationService>();
+            services.AddScoped<ITypeAccountService, TypeAccountService>();
+            services.AddScoped<IAccountService, AccountService>();
+
             return services;
         }
 
@@ -66,7 +69,7 @@ namespace Api.InjectionDependencies
         {
             services.AddSwaggerGen(c =>
           {
-              c.SwaggerDoc("v1", new OpenApiInfo { Title = "GymAppApi", Version = "v1" });
+              c.SwaggerDoc("v1", new OpenApiInfo { Title = "App Ionic + Redux + NetCore", Version = "v1" });
               c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
               {
                   Name = "Authorization",

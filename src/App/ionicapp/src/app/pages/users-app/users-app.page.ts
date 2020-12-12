@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApplicationUser } from 'src/app/models/userapp.model';
 import { UsersAppService } from './services/users-app.service';
@@ -16,15 +17,14 @@ export class UsersAppPage implements OnInit {
 
   constructor(
     private service: UsersAppService,
-    private fb: FormBuilder
-
+    private fb: FormBuilder,
+    private router:Router
   ) { }
 
   ngOnInit() {
     this.state$ = this.service.getState();
     this.service.loadTypeIdentifications();
     this.createForm();
-    
   }
 
   createForm(): void {
@@ -41,7 +41,6 @@ export class UsersAppPage implements OnInit {
   }
 
   submit(): void {
-    debugger;
     if (this.form.valid) {
       this.service.create(this.sendCreateUser());
     } else {
@@ -69,6 +68,10 @@ export class UsersAppPage implements OnInit {
       this.form.controls[control].markAsDirty();
       this.form.controls[control].markAsTouched();
     }
+  }
+
+  backToLogin(): void {
+    this.router.navigate(['/login']);
   }
 
 }

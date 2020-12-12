@@ -15,7 +15,7 @@ namespace Infraestructure.AppContext
         public DbSet<TypeIdentification> TypeIdentifications { get; set; }
         public DbSet<TypeAccount> TypeAccounts { get; set; }
         public DbSet<Account> Accounts { get; set; }
-
+        public DbSet<MoveBalanceAccount> MoveBalanceAccounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

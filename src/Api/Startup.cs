@@ -30,7 +30,7 @@ namespace Api
         {
              services.AddCors(options =>
             {
-                options.AddPolicy("GymAppPolicy", 
+                options.AddPolicy("AppIonicPolicy", 
                 builder => 
                 builder.AllowAnyOrigin()
                 .AllowAnyHeader()
@@ -54,7 +54,7 @@ namespace Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
             }
 
-             app.UseCors("GymAppPolicy");
+             app.UseCors("AppIonicPolicy");
             // app.UseMiddleware<RequestResponseMiddleware>();
 
             app.UseHttpsRedirection();

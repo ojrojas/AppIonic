@@ -1,4 +1,6 @@
 export const userCreateMessage ="Usuario creado con exito";
+export const userCreateExistsMessage ="Usuario ya existe en el sistema";
+
 export const userCreateMessageFailure ="Error usuario no pudo ser creado, por favor informe de este error 'correo@errores.com'";
 
 export const userUpdateMessage = "Usuario actualizado con exito";

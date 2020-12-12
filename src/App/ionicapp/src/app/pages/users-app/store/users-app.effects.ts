@@ -48,10 +48,18 @@ export class UsersAppEffects {
         this.service.presentToast(fromUserMessages.userCreateMessage);
         this.router.navigate(['/login']);
       }else{
-        this.service.presentToast(fromUserMessages.userCreateMessageFailure);
+        this.service.presentToast(fromUserMessages.userCreateExistsMessage);
       }
-      this.service.loadApplicationUsers();
     })), { dispatch: false });
+
+    createFailure$ = createEffect(() => this.actions$.pipe(
+      ofType(fromActions.createFailure),
+      tap((props) => {
+        if(props.error !== null){
+          this.service.presentToast(fromUserMessages.userCreateMessageFailure);
+          this.router.navigate(['/login']);
+        }
+      })), { dispatch: false });
 
   edit$ = createEffect(() => this.actions$.pipe(
     ofType(fromActions.edit),

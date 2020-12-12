@@ -39,7 +39,6 @@ export class UsersAppService {
   }
 
   edit(applicationUser: ApplicationUser): void {
-    debugger;
     this.store.dispatch(fromActions.edit({ applicationUser }));
   }
 

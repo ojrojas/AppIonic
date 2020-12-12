@@ -2,9 +2,9 @@ import { PageModel } from "../models/page.model";
 
 export const PagesListDataApp: PageModel[] = [
     {
-        url:'/menu/users-app',
-        title: 'Usuarios',
-        icon: 'people-outline'
+        url:'/menu/home',
+        title: 'Home',
+        icon: 'home-outline'
     },
     {
         url:'/menu/accounts',
