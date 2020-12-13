@@ -3,9 +3,10 @@ import { ToastController } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from '../store/accounts.reducer';
-import { getStateAccounts } from '../store/accounts.selectors';
+import { getCheckedNumberAccount, getStateAccounts } from '../store/accounts.selectors';
 import * as fromActions from '../store/accounts.actions';
 import { Account } from 'src/app/models/accounts.model';
+import { MoveBalance } from 'src/app/models/movebalance.model';
 
 
 @Injectable({
@@ -32,6 +33,22 @@ export class AccountsService {
 
   loadTypeAccounts():void {
     this.store.dispatch(fromActions.loadTypeAccounts());
+  }
+
+  take(takeHave: MoveBalance): void {
+    this.store.dispatch(fromActions.takeHave({takeHave}));
+  }
+
+  searchNumberAccount(numberAccount): void {
+    this.store.dispatch(fromActions.searchNumberAccount({numberAccount}));
+  }
+
+  checkedNumberAccount():Observable<boolean> {
+    return this.store.pipe(select(getCheckedNumberAccount));
+  }
+
+  setCheckedNumberAccount(checkedAccount: boolean): void{
+    this.store.dispatch(fromActions.numberAccountChecked({checkedAccount}))
   }
 
   async presentToast(message:string) {

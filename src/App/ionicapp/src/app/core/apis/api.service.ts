@@ -46,5 +46,9 @@ export class ApiService {
       `${environment.BaseUrlApi}${routesApis}`, entity , { observe: 'response' });
   }
 
+  postGeneric(entity: any, routesApis: RoutesApis): Observable<HttpResponse<any>> {
+    return this.http.post<any>(
+      `${environment.BaseUrlApi}${routesApis}`, entity , { observe: 'response' });
+  }
 
 }

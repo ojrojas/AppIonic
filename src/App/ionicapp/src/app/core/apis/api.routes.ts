@@ -5,5 +5,6 @@ export enum RoutesApis {
     typeIdentification='typeIdentification',
     typeAccounts = 'typeAccounts',
     getAllAccountsById = 'accounts/GetAllById',
-    findAccountByNumberAccount= 'accounts/FindAccountByNumberAccount'
+    findAccountByNumberAccount= 'accounts/FindAccountByNumberAccount',
+    takeBalance = 'accounts/takeBalance'
 }

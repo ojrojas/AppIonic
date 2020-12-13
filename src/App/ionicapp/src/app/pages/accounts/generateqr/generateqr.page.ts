@@ -15,6 +15,7 @@ export class GenerateqrPage implements OnInit {
   state$:Observable<State>;
   userApp:ApplicationUser;
   balance:number;
+  accountName:string;
   
   
   public qrdata: string = null;
@@ -30,7 +31,7 @@ export class GenerateqrPage implements OnInit {
     ) { 
       this.elementType = "img";
       this.level = "M";
-      this.qrdata = "o";
+      this.qrdata = null;
       this.scale = 1;
       this.width = 256;
     }
@@ -49,7 +50,13 @@ export class GenerateqrPage implements OnInit {
     return balance;
   }
 
-  selectAccount(account:Account): void {
+  selectAccount(event:any): void {
+    let account:Account;
+    this.state$.subscribe(val => {
+      account = val.accounts.find(x=>x.id === event.detail.value);
+    }).unsubscribe();
+
     this.qrdata = account.id;
+    this.accountName = account.description;
   }
 }

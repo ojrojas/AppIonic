@@ -10,13 +10,15 @@ export const accountsFeatureKey = 'accounts';
 
 export interface State {
   account: Account;
-  applicationUserId:string;
+  applicationUserId: string;
   accounts: Account[];
   error: any;
   isLoading: boolean;
   takeHave: MoveBalance;
   accountId: string;
-  typeAccounts:TypeAccount[];
+  typeAccounts: TypeAccount[];
+  numberAccount: string;
+  checkedAccount: boolean;
 }
 
 export const initialState: State = {
@@ -25,9 +27,11 @@ export const initialState: State = {
   error: null,
   isLoading: false,
   accountId: null,
-  takeHave:null,
-  typeAccounts:[],
-  applicationUserId:null,
+  takeHave: null,
+  typeAccounts: [],
+  applicationUserId: null,
+  numberAccount: null,
+  checkedAccount: false
 };
 
 export const reducer = createReducer(
@@ -63,7 +67,21 @@ export const reducer = createReducer(
     error,
   })),
 
-
+  on(fromActions.searchNumberAccount, (state, { numberAccount }) => ({
+    ...state,
+    numberAccount,
+    isLoading: true
+  })),
+  on(fromActions.searchNumberAccountSucces, (state, { account }) => ({
+    ...state,
+    account,
+    isLoading: false
+  })),
+  on(fromActions.searchNumberAccountFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  })),
 
 
   on(fromActions.create, (state, { account }) => ({
@@ -80,24 +98,28 @@ export const reducer = createReducer(
     ...state,
     isLoading: false,
     error,
- })),
+  })),
 
- on(fromActions.takeHave, (state, { takeHave }) => ({
-  ...state,
-  takeHave,
-  isLoading: true
-})),
-on(fromActions.takeHaveSuccess, (state, { account }) => ({
-  ...state,
-  account,
-  isLoading: false
-})),
-on(fromActions.takeHaveFailure, (state, { error }) => ({
-  ...state,
-  isLoading: false,
-  error,
-})),
+  on(fromActions.takeHave, (state, { takeHave }) => ({
+    ...state,
+    takeHave,
+    isLoading: true
+  })),
+  on(fromActions.takeHaveSuccess, (state, { account }) => ({
+    ...state,
+    account,
+    isLoading: false
+  })),
+  on(fromActions.takeHaveFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  })),
 
-
+  on(fromActions.numberAccountChecked, (state, { checkedAccount }) => ({
+    ...state,
+    isLoading: false,
+    checkedAccount
+  })),
 );
 

@@ -7,3 +7,8 @@ export const getAccounts = createSelector(
     getStateAccounts,
     (state) => state.accounts
 );
+
+export const getCheckedNumberAccount = createSelector(
+    getStateAccounts,
+    (state) => state.checkedAccount
+);

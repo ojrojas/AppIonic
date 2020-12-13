@@ -11,8 +11,52 @@
   <app-loadingtwo [isLoading]="(state$ |async ).isLoading">
     <ion-list>
       <ion-item>
-       Disponible $ {{ sumBalance((state$ | async).accounts) }}
+        Disponible $ {{ sumBalance((state$ | async).accounts) }}
       </ion-item>
+      <ion-item-divider></ion-item-divider>
+      <ion-item>
+        <ion-label>
+          Cuenta origen
+        </ion-label>
+
+      </ion-item>
+      <ion-item>
+        <ion-select interface="popover" placeholder="Seleccione..." (ionChange)="selectAccount($event)">
+          <ion-select-option [value]="account.id" *ngFor="let account of (state$ | async).accounts">
+            {{account.description}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Cuenta destino
+        </ion-label>
+
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="numberAccount">
+        </ion-input>
+        <ion-button (click)="searchNumberAccount()">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Ingresa el valor
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="balance" [value]="0">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button [disabled]="!checkedNumberAccount" (click)="submit()">
+            Pasar
+        </ion-button>
+      </ion-item>
+
+
     </ion-list>
   </app-loadingtwo>
 </ion-content>

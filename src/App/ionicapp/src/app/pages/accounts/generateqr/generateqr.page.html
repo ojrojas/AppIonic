@@ -10,30 +10,27 @@
 <ion-content>
   <app-loadingtwo [isLoading]="(state$ | async).isLoading">
     <ion-list>
-      <ion-item *ngFor="let account of (state$ | async).accounts" (click)="selectAccount(account)">
-        <ion-card>
+      <ion-item>
+       <ion-label>Seleccione cuenta</ion-label>
+       <ion-select interface="popover" placeholder="Seleccione..." (ionChange)="selectAccount($event)">
+        <ion-select-option [value]="account.id"
+          *ngFor="let account of (state$ | async).accounts">
           {{account.description}}
-          <ion-card-content>
-            $ {{account.balance}}
-          </ion-card-content>
-        </ion-card>
+        </ion-select-option>
+      </ion-select>
       </ion-item>
       <ion-item>
-        <!-- <div class="flexContainer" *ngIf="qrdata">
+        <div class="flexContainer" *ngIf="qrdata">
           <div class="result">
             <div class="meta">
-              <div>qrdata: {{ qrdata }}</div>
-              <div>elementType: {{ elementType }}</div>
-              <div>level: {{ level }}</div>
-              <div>scale: {{ scale }}</div>
-              <div>width: {{ width }}</div>
+              <div>Descripción Cuenta: {{ accountName }}</div>
             </div>
             <div class="qrcodeImage">
               <qrcode [elementType]="elementType" [level]="level" [qrdata]="qrdata" [scale]="scale" [width]="width">
               </qrcode>
             </div>
           </div>
-        </div> -->
+        </div>
       </ion-item>
     </ion-list>
   </app-loadingtwo>

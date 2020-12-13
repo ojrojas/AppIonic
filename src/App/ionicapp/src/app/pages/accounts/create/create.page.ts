@@ -44,7 +44,6 @@ export class CreatePage implements OnInit {
   }
 
   sendCreateAccount():Account {
-    debugger;
     return {
       applicationUserId: this.userApp.id,
       description:this.form.value.description,

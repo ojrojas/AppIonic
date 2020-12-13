@@ -6,6 +6,8 @@ import { InjectComponentDirective } from './directives/inject-component.directiv
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoadingtwoComponent } from './components/loadingtwo/loadingtwo.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { LoadingtwoComponent } from './components/loadingtwo/loadingtwo.componen
     LoadingComponent,
     LoadingtwoComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QRCodeModule
   ],
   providers: [
 

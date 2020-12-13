@@ -77,5 +77,27 @@ export const loadTypeAccountsFailure = createAction(
   props<{ error: any }>()
 );
 
+export const searchNumberAccount = createAction(
+  '[Accounts] Load searchNumberAccount',
+  props<{numberAccount:string}>()
+);
+
+export const searchNumberAccountSucces = createAction(
+  '[Accounts] Load searchNumberAccount success',
+  props<{ account: Account }>()
+);
+
+export const searchNumberAccountFailure = createAction(
+  '[Accounts] Load searchNumberAccount Failure',
+  props<{ error: any }>()
+);
+
+export const numberAccountChecked = createAction(
+  '[Accounts] numberAccountChecked',
+  props<{checkedAccount: boolean}>()
+)
+
+
+
 
 

@@ -13,6 +13,7 @@ import * as fromReducer from './store/accounts.reducer';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountsEffects } from './store/accounts.effects';
+import { GenerateqrPage } from './generateqr/generateqr.page';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { AccountsEffects } from './store/accounts.effects';
     CreatePage,
     DetailPage,
     TakePage,
-    HowhavePage
+    HowhavePage,
+    GenerateqrPage
   ]
 })
 export class AccountsPageModule {}

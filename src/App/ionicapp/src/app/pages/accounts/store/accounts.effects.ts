@@ -32,6 +32,26 @@ export class AccountsEffects {
         )))
   ));
 
+  takeHave$ = createEffect(() => this.actions$.pipe(
+    ofType(fromActions.takeHave),
+    concatMap((props) => this.apiService.postGeneric(props.takeHave, RoutesApis.takeBalance)
+      .pipe(
+        map(response => (fromActions.takeHaveSuccess({ account: response.body }))),
+        catchError((error) => of(fromActions.takeHaveFailure({ error }))
+        )))
+  ));
+
+  takeHaveSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(fromActions.takeHaveSuccess),
+    tap((props) => {
+      if (props.account !== null) {
+        this.service.presentToast(fromAccountMessages.takeBalanceMessage);
+        this.service.setCheckedNumberAccount(false);
+        this.router.navigate(['/menu/accounts']);
+      } else {
+        this.service.presentToast(fromAccountMessages.takeBalanceWithOutMoneyMessage);
+      }
+    })), { dispatch: false });
 
   create$ = createEffect(() => this.actions$.pipe(
     ofType(fromActions.create),
@@ -50,6 +70,27 @@ export class AccountsEffects {
         this.router.navigate(['/menu/accounts']);
       } else {
         this.service.presentToast(fromAccountMessages.createAccountExistsMessage);
+      }
+    })), { dispatch: false });
+
+  searchNumberAccount$ = createEffect(() => this.actions$.pipe(
+    ofType(fromActions.searchNumberAccount),
+    concatMap((props) => this.apiService.get<Account>(RoutesApis.findAccountByNumberAccount, props.numberAccount)
+      .pipe(
+        map(response => (fromActions.searchNumberAccountSucces({ account: response.body }))),
+        catchError((error) => of(fromActions.searchNumberAccountFailure({ error }))
+        )))
+  ));
+
+  searchNumberAccountSucces$ = createEffect(() => this.actions$.pipe(
+    ofType(fromActions.searchNumberAccountSucces),
+    tap((props) => {
+      if (props.account !== null) {
+        this.service.presentToast(fromAccountMessages.searchNumberAccountMessage);
+        this.service.setCheckedNumberAccount(true);
+      } else {
+        this.service.presentToast(fromAccountMessages.searchNumberAccountNotExistsMessage);
+        this.service.setCheckedNumberAccount(false);
       }
     })), { dispatch: false });
 
