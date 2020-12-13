@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -23,6 +24,7 @@ namespace Core.Services
 
         public async Task<Account> Create(Account entity)
         {
+            entity.NumberAccount = await this.GenerateNumberAccountAsync();
             return await this._asyncRepository.CreateAsync(entity);
         }
 
@@ -32,9 +34,16 @@ namespace Core.Services
             return await this._asyncRepository.DeleteAsync(account, account.Id);
         }
 
-        public async Task<IReadOnlyList<Account>> GetAll()
+        public async Task<Account> FindAccountByNumberAccount(string numberAccount)
         {
-            return await this._asyncRepository.GetAllAsync();
+            var specification = new AccountSpecification(numberAccount);
+            return await this._asyncRepository.FirstOrDefaultAsync(specification);
+        }
+
+        public async Task<IReadOnlyList<Account>> GetAllById(Guid ApplicationUserId)
+        {
+            var specification = new AccountSpecification(ApplicationUserId);
+            return await this._asyncRepository.GetListAsync(specification);
         }
 
         public async Task<Account> GetById(Guid id)
@@ -81,6 +90,17 @@ namespace Core.Services
             await this._asyncRepository.UpdateAsync(entitySource);
             await this._asyncRepository.UpdateAsync(entityDestination);
             return entitySource;
+        }
+
+        private async Task<string> GenerateNumberAccountAsync()
+        {
+            var listAccounts = await this._asyncRepository.GetAllAsync();
+            if(listAccounts.Count == 0) return "1";
+            else {
+                var lastAccount = listAccounts.LastOrDefault();
+                var numberAccount = int.Parse(lastAccount.NumberAccount) + 1;
+                return numberAccount.ToString();
+            }
         }
     }
 }

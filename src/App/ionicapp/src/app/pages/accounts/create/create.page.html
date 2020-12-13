@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="submit(form)">
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input formControlName="description" type="text" placeholder="Descripción"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo Cuenta</ion-label>
+      <ion-select placeholder="Seleccione..." formControlName="typeAccountId">
+        <ion-select-option [value]="typeIdentification.id"
+          *ngFor="let typeIdentification of (state$ | async).typeAccounts">
+          {{typeIdentification.description}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-button type="submit">
+        Crear
+      </ion-button>
+    </ion-item>
+  </form>
+</ion-content>

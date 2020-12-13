@@ -21,6 +21,7 @@ import { metaReducers } from './meta.reducer';
 import { ApiService } from './core/apis/api.service';
 import { AppInterceptor } from './pages/auth/appinterceptor.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    QRCodeModule,
     HttpClientModule,
     StoreModule.forRoot(REDUCER_TOKEN, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

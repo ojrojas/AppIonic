@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pasar dinero</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-loadingtwo [isLoading]="(state$ |async ).isLoading">
+    <ion-list>
+      <ion-item>
+       Disponible $ {{ sumBalance((state$ | async).accounts) }}
+      </ion-item>
+    </ion-list>
+  </app-loadingtwo>
+</ion-content>

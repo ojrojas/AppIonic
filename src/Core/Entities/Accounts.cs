@@ -5,6 +5,7 @@ namespace Core.Entities
 {
     public class Account   : BaseEntity, IAggregateRoot
     {
+        public string NumberAccount {get;set;}
         public string Description { get; set; }
         public TypeAccount TypeAccount { get; set; }
         public Guid TypeAccountId { get; set; }

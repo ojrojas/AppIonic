@@ -53,9 +53,6 @@ export const reducer = createReducer(
     isLoading: false,
     error,
   })),
-
-
-
   on(UsersAppActions.create, (state) => ({
     ...state,
     isLoading: true

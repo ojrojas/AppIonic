@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Generador Qr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-loadingtwo [isLoading]="(state$ | async).isLoading">
+    <ion-list>
+      <ion-item *ngFor="let account of (state$ | async).accounts" (click)="selectAccount(account)">
+        <ion-card>
+          {{account.description}}
+          <ion-card-content>
+            $ {{account.balance}}
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item>
+        <!-- <div class="flexContainer" *ngIf="qrdata">
+          <div class="result">
+            <div class="meta">
+              <div>qrdata: {{ qrdata }}</div>
+              <div>elementType: {{ elementType }}</div>
+              <div>level: {{ level }}</div>
+              <div>scale: {{ scale }}</div>
+              <div>width: {{ width }}</div>
+            </div>
+            <div class="qrcodeImage">
+              <qrcode [elementType]="elementType" [level]="level" [qrdata]="qrdata" [scale]="scale" [width]="width">
+              </qrcode>
+            </div>
+          </div>
+        </div> -->
+      </ion-item>
+    </ion-list>
+  </app-loadingtwo>
+</ion-content>

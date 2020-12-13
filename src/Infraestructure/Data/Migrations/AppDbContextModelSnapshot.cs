@@ -43,6 +43,9 @@ namespace Infraestructure.Data.Migrations
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("NumberAccount")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("State")
                         .HasColumnType("INTEGER");
 
@@ -111,6 +114,43 @@ namespace Infraestructure.Data.Migrations
                     b.HasIndex("TypeIdentificationId");
 
                     b.ToTable("ApplicationUsers");
+                });
+
+            modelBuilder.Entity("Core.Entities.MoveBalanceAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDebit")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("MoveBalanceAccounts");
                 });
 
             modelBuilder.Entity("Core.Entities.Role", b =>
@@ -262,6 +302,17 @@ namespace Infraestructure.Data.Migrations
                         .HasForeignKey("TypeIdentificationId");
 
                     b.Navigation("TypeIdentification");
+                });
+
+            modelBuilder.Entity("Core.Entities.MoveBalanceAccount", b =>
+                {
+                    b.HasOne("Core.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Core.Entities.RolesByUsers", b =>

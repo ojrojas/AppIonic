@@ -29,6 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllById/{ApplicationUserId}")]
         [AllowAnonymous]
         [ResponseCache(Duration = 60)]
         /// <summary>
@@ -37,9 +38,9 @@ namespace Api.Controllers
         /// <returns>List AccountService</returns>
         [Produces("application/json")]
         [ProducesResponseType(typeof(IReadOnlyList<Account>), StatusCodes.Status200OK)]
-        public async Task<IReadOnlyList<Account>> GetAllAsync()
+        public async Task<IReadOnlyList<Account>> GetAllById(Guid ApplicationUserId)
         {
-            return await this._AccountService.GetAll();
+            return await this._AccountService.GetAllById(ApplicationUserId);
         }
 
         [HttpPost]
@@ -102,6 +103,19 @@ namespace Api.Controllers
         public async Task<Account> TakeBalance([FromBody] MoveBalance moveBalance)
         {
             return await this._AccountService.TakeBalance(moveBalance);
+        }
+
+         [HttpGet]
+        [Route("FindAccountByNumberAccount/{numberAccount}")]
+        /// <summary>
+        /// Post Account App
+        /// </summary>
+        /// <returns>Account created</returns>
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
+        public async Task<Account> FindAccountByNumberAccount(string numberAccount)
+        {
+            return await this._AccountService.FindAccountByNumberAccount(numberAccount);
         }
     }
 }

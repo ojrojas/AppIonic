@@ -5,13 +5,15 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { InjectComponentDirective } from './directives/inject-component.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
+import { LoadingtwoComponent } from './components/loadingtwo/loadingtwo.component';
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
-    InjectComponentDirective],
+    LoadingtwoComponent,
+    InjectComponentDirective
+  ],
   imports: [
     CommonModule,
     IonicModule,
@@ -20,11 +22,12 @@ import { IonicModule } from '@ionic/angular';
   exports: [
     IonicModule,
     LoadingComponent,
+    LoadingtwoComponent,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
-  
+
   ]
 })
 export class SharedModule { }

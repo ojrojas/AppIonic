@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cuento tengo..</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-loadingtwo [isLoading]="(state$ |async ).isLoading">
+    <ion-list>
+      <ion-item *ngFor="let account of (state$ | async).accounts">
+        <ion-card>
+          {{account.description}}
+          <ion-card-content>
+            $ {{account.balance}}
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item>
+        $ {{ sumBalance((state$ | async).accounts) }}
+      </ion-item>
+    </ion-list>
+  </app-loadingtwo>
+</ion-content>
